@@ -30,7 +30,7 @@ class PasienController extends Controller
      */
     public function show()
     {
-        return Pasien::whereNull('created_at')->get();
+        return Pasien::whereNull('deleted_at')->get();
     }
 
     /**
