@@ -8,21 +8,6 @@ use Nette\Utils\Json;
 
 class PasienController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,38 +19,55 @@ class PasienController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir
         ]);
 
-        return 'data berhasil';
+        return response()->json([
+            'message' => 'Berhasil Menyimpan Data ...',
+            'error' => false,
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Pasien $pasien)
+    public function show()
     {
-        return Pasien::select()->get();
+        return Pasien::whereNull('created_at')->get();
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pasien $pasien)
+    public function edit(Request $request)
     {
-        //
+        return Pasien::findOrFail($request->id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pasien $pasien)
+    public function update(Request $request)
     {
-        //
+        $data = Pasien::findOrFail($request->id);
+
+        $data->nama = $request->nama;
+        $data->tanggal_lahir = $request->tanggal_lahir;
+
+        return response()->json([
+            'message' => 'Berhasil Update Data ...',
+            'error' => false,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pasien $pasien)
+    public function delete(Request $request)
     {
-        //
+        $data = Pasien::findOrFail($request->id);
+        $data->delete();
+
+        return response()->json([
+            'message' => 'Berhasil Hapus Data ...',
+            'error' => false,
+        ]);
     }
 }

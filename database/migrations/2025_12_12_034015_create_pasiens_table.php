@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->date('tanggal_lahir');
             $table->timestamps();
+            $table->softDeletesTz('deleted_at');
         });
     }
 

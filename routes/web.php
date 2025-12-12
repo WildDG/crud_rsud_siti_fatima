@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('alldata', [\App\Http\Controllers\PasienController::class, 'show']);
+Route::post('edit', [\App\Http\Controllers\PasienController::class, 'edit']);
 Route::post('simpan', [\App\Http\Controllers\PasienController::class, 'store']);
+Route::post('update', [\App\Http\Controllers\PasienController::class, 'update']);
+Route::post('delete', [\App\Http\Controllers\PasienController::class, 'delete']);
 Route::get('/', function () {
     return view('welcome');
 });
