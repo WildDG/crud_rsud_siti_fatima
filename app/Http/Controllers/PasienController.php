@@ -51,6 +51,8 @@ class PasienController extends Controller
         $data->nama = $request->nama;
         $data->tanggal_lahir = $request->tanggal_lahir;
 
+        $data->save();
+
         return response()->json([
             'message' => 'Berhasil Update Data ...',
             'error' => false,
